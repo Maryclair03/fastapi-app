@@ -14,7 +14,7 @@ def get_db():
     try:
         yield db
     finally:
-        db.closed()
+        db.close()
 
 class BookCreate(BaseModel):
     title: str
@@ -30,7 +30,7 @@ def get_books(db:Session = Depends(get_db)):
     books = db.query(Book).all()
     return books
 
-@app.post("/books", reponse_model=BookOut)
+@app.post("/books", response_model=BookOut)
 def add_book(book: BookCreate, db: Session = Depends(get_db)):
     db_book = Book(title=book.title, author=book.author)
     db.add(db_book)
