@@ -1,4 +1,4 @@
-rom sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from database import Base
 
 class Book(Base):
@@ -8,4 +8,3 @@ class Book(Base):
     title = Column(String, index=True)
     author = Column(String)
 
-    
